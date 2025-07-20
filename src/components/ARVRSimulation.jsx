@@ -100,32 +100,35 @@ export function ARModeSimulator({ isActive, onToggle }) {
               AR MODE ACTIVE
             </div>
 
-            {/* Enhanced Close Button */}
+            {/* Enhanced Close Button - Highest z-index to be above everything */}
             <button
-              onClick={onToggle}
+              onClick={() => {
+                console.log("AR Close button clicked!");
+                onToggle();
+              }}
               style={{
                 position: "absolute",
                 top: "20px",
                 right: "20px",
-                background: "rgba(0, 0, 0, 0.8)",
-                border: "3px solid #00ff00",
+                background: "rgba(0, 0, 0, 0.9)",
+                border: "4px solid #00ff00",
                 borderRadius: "50%",
-                width: "60px",
-                height: "60px",
+                width: "70px",
+                height: "70px",
                 color: "#00ff00",
                 cursor: "pointer",
-                fontSize: "1.5rem",
+                fontSize: "1.8rem",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 fontWeight: "bold",
                 pointerEvents: "auto",
-                backdropFilter: "blur(15px)",
+                backdropFilter: "blur(20px)",
                 transition: "all 0.3s ease",
                 boxShadow:
-                  "0 0 20px rgba(0, 255, 0, 0.5), inset 0 0 20px rgba(0, 255, 0, 0.1)",
+                  "0 0 30px rgba(0, 255, 0, 0.8), inset 0 0 30px rgba(0, 255, 0, 0.2), 0 0 50px rgba(0, 255, 0, 0.4)",
                 animation: "arButtonPulse 2s ease-in-out infinite",
-                zIndex: 10001,
+                zIndex: 99999,
               }}
               onMouseEnter={(e) => {
                 e.target.style.background = "rgba(0, 255, 0, 0.3)";
@@ -146,22 +149,48 @@ export function ARModeSimulator({ isActive, onToggle }) {
               ✕
             </button>
 
-            {/* Exit AR Text */}
+            {/* Exit AR Text - Moved to center bottom for better visibility */}
             <div
               style={{
                 position: "absolute",
-                top: "90px",
-                right: "20px",
+                bottom: "100px",
+                left: "50%",
+                transform: "translateX(-50%)",
                 color: "#00ff00",
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "12px",
-                textShadow: "0 0 10px currentColor",
+                fontSize: "16px",
+                fontWeight: "bold",
+                textShadow: "0 0 15px currentColor, 0 0 30px currentColor",
                 textAlign: "center",
                 pointerEvents: "none",
-                animation: "arTextFade 3s ease-in-out infinite",
+                animation: "arTextFade 2s ease-in-out infinite",
+                background: "rgba(0, 0, 0, 0.8)",
+                padding: "12px 24px",
+                borderRadius: "25px",
+                border: "2px solid #00ff00",
+                backdropFilter: "blur(15px)",
+                boxShadow: "0 0 25px rgba(0, 255, 0, 0.5)",
+                zIndex: 99998,
               }}
             >
-              TAP TO EXIT
+              ↗️ TAP BUTTON TO EXIT AR ↗️
+            </div>
+
+            {/* Arrow pointing to close button */}
+            <div
+              style={{
+                position: "absolute",
+                top: "95px",
+                right: "95px",
+                color: "#00ff00",
+                fontSize: "28px",
+                pointerEvents: "none",
+                animation: "arArrowBounce 1.5s ease-in-out infinite",
+                textShadow: "0 0 15px currentColor, 0 0 30px currentColor",
+                zIndex: 99998,
+              }}
+            >
+              ↗️
             </div>
 
             {/* Scanning Grid */}
@@ -224,9 +253,23 @@ export function ARModeSimulator({ isActive, onToggle }) {
         @keyframes arTextFade {
           0%,
           100% {
-            opacity: 0.6;
+            opacity: 0.8;
+            transform: translateX(-50%) scale(1);
           }
           50% {
+            opacity: 1;
+            transform: translateX(-50%) scale(1.05);
+          }
+        }
+
+        @keyframes arArrowBounce {
+          0%,
+          100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.7;
+          }
+          50% {
+            transform: translate(-5px, -5px) scale(1.2);
             opacity: 1;
           }
         }

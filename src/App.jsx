@@ -2227,8 +2227,20 @@ export default function App() {
       {/* AR/VR Simulators */}
       {!showAuth && !isLoading && !showWelcome && (
         <>
-          <ARModeSimulator isActive={arMode} onToggle={setArMode} />
-          <VRModeSimulator isActive={vrMode} onToggle={setVrMode} />
+          <ARModeSimulator
+            isActive={arMode}
+            onToggle={() => {
+              setArMode(false);
+              announce("Exited AR mode, returned to solar system");
+            }}
+          />
+          <VRModeSimulator
+            isActive={vrMode}
+            onToggle={() => {
+              setVrMode(false);
+              announce("Exited VR mode, returned to solar system");
+            }}
+          />
           <GestureControl
             onGesture={handleGestureCommand}
             isActive={gestureMode}
@@ -2540,9 +2552,9 @@ export default function App() {
         className="solar-system-container"
         style={{ position: "relative", width: "100vw", height: "100vh" }}
       >
-        {/* Professional Control Panel - Only show after welcome screen */}
+        {/* Professional Control Panel - Hidden in AR/VR modes */}
         {/* Floating Planet Control Panel - Only show after welcome screen */}
-        {!showWelcome && (
+        {!showWelcome && !arMode && !vrMode && (
           <div
             ref={panelRef}
             onMouseDown={handleMouseDown}
@@ -3191,114 +3203,118 @@ export default function App() {
           </div>
         )}
 
-        {/* Clean Control Panel */}
-        <div
-          style={{
-            position: "fixed",
-            top: "20px",
-            right: "20px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px",
-            zIndex: 1002,
-          }}
-        >
-          {/* Main Menu Button */}
-          <button
-            onClick={() => setShowHolographicUI(true)}
-            aria-label="Open control center"
-            style={{
-              padding: "12px 16px",
-              background:
-                "linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9))",
-              border: "1px solid rgba(255, 255, 255, 0.3)",
-              borderRadius: "12px",
-              color: "white",
-              fontSize: "0.9rem",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-              fontFamily: '"Space Mono", monospace',
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              fontWeight: "600",
-              backdropFilter: "blur(10px)",
-              boxShadow: "0 4px 15px rgba(102, 126, 234, 0.3)",
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = "translateY(-2px) scale(1.05)";
-              e.target.style.boxShadow = "0 6px 20px rgba(102, 126, 234, 0.5)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = "translateY(0) scale(1)";
-              e.target.style.boxShadow = "0 4px 15px rgba(102, 126, 234, 0.3)";
-            }}
-          >
-            🚀 Control Center
-          </button>
-
-          {/* Quick Access Row */}
+        {/* Clean Control Panel - Hidden in AR/VR modes */}
+        {!arMode && !vrMode && (
           <div
             style={{
+              position: "fixed",
+              top: "20px",
+              right: "20px",
               display: "flex",
-              gap: "6px",
+              flexDirection: "column",
+              gap: "8px",
+              zIndex: 1002,
             }}
           >
+            {/* Main Menu Button */}
             <button
-              onClick={() => setShowHelp(true)}
-              aria-label="Show help"
+              onClick={() => setShowHolographicUI(true)}
+              aria-label="Open control center"
               style={{
-                padding: "8px",
-                background: "rgba(255, 255, 255, 0.1)",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
-                borderRadius: "8px",
+                padding: "12px 16px",
+                background:
+                  "linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9))",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+                borderRadius: "12px",
                 color: "white",
-                fontSize: "0.8rem",
+                fontSize: "0.9rem",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
+                fontFamily: '"Space Mono", monospace',
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                fontWeight: "600",
                 backdropFilter: "blur(10px)",
+                boxShadow: "0 4px 15px rgba(102, 126, 234, 0.3)",
               }}
               onMouseEnter={(e) => {
-                e.target.style.background = "rgba(255, 255, 255, 0.2)";
-                e.target.style.transform = "scale(1.1)";
+                e.target.style.transform = "translateY(-2px) scale(1.05)";
+                e.target.style.boxShadow =
+                  "0 6px 20px rgba(102, 126, 234, 0.5)";
               }}
               onMouseLeave={(e) => {
-                e.target.style.background = "rgba(255, 255, 255, 0.1)";
-                e.target.style.transform = "scale(1)";
+                e.target.style.transform = "translateY(0) scale(1)";
+                e.target.style.boxShadow =
+                  "0 4px 15px rgba(102, 126, 234, 0.3)";
               }}
             >
-              ❓
+              🚀 Control Center
             </button>
 
-            <button
-              onClick={() => setShowAdvancedSearch(true)}
-              aria-label="Search"
+            {/* Quick Access Row */}
+            <div
               style={{
-                padding: "8px",
-                background: "rgba(255, 255, 255, 0.1)",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
-                borderRadius: "8px",
-                color: "white",
-                fontSize: "0.8rem",
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-                backdropFilter: "blur(10px)",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = "rgba(255, 255, 255, 0.2)";
-                e.target.style.transform = "scale(1.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = "rgba(255, 255, 255, 0.1)";
-                e.target.style.transform = "scale(1)";
+                display: "flex",
+                gap: "6px",
               }}
             >
-              🔍
-            </button>
+              <button
+                onClick={() => setShowHelp(true)}
+                aria-label="Show help"
+                style={{
+                  padding: "8px",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  borderRadius: "8px",
+                  color: "white",
+                  fontSize: "0.8rem",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  backdropFilter: "blur(10px)",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "rgba(255, 255, 255, 0.2)";
+                  e.target.style.transform = "scale(1.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "rgba(255, 255, 255, 0.1)";
+                  e.target.style.transform = "scale(1)";
+                }}
+              >
+                ❓
+              </button>
 
-            <HighContrastToggle />
+              <button
+                onClick={() => setShowAdvancedSearch(true)}
+                aria-label="Search"
+                style={{
+                  padding: "8px",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  borderRadius: "8px",
+                  color: "white",
+                  fontSize: "0.8rem",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  backdropFilter: "blur(10px)",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "rgba(255, 255, 255, 0.2)";
+                  e.target.style.transform = "scale(1.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "rgba(255, 255, 255, 0.1)";
+                  e.target.style.transform = "scale(1)";
+                }}
+              >
+                🔍
+              </button>
+
+              <HighContrastToggle />
+            </div>
           </div>
-        </div>
+        )}
 
         <Canvas
           id="main-content"
@@ -3413,8 +3429,8 @@ export default function App() {
           </EffectComposer>
         </Canvas>
 
-        {/* More about Earth Button - Only visible when Earth is focused */}
-        {focusedPlanet === "Earth" && (
+        {/* More about Earth Button - Only visible when Earth is focused and not in AR/VR */}
+        {focusedPlanet === "Earth" && !arMode && !vrMode && (
           <button
             onClick={handleMoreAboutEarth}
             style={{
@@ -3481,7 +3497,7 @@ export default function App() {
         )}
 
         {/* More about Mercury Button */}
-        {focusedPlanet === "Mercury" && (
+        {focusedPlanet === "Mercury" && !arMode && !vrMode && (
           <button
             onClick={mercuryHandlers.handleMoreAbout}
             style={{
@@ -3520,7 +3536,7 @@ export default function App() {
         )}
 
         {/* More about Venus Button */}
-        {focusedPlanet === "Venus" && (
+        {focusedPlanet === "Venus" && !arMode && !vrMode && (
           <button
             onClick={venusHandlers.handleMoreAbout}
             style={{
@@ -3559,7 +3575,7 @@ export default function App() {
         )}
 
         {/* More about Mars Button */}
-        {focusedPlanet === "Mars" && (
+        {focusedPlanet === "Mars" && !arMode && !vrMode && (
           <button
             onClick={marsHandlers.handleMoreAbout}
             style={{
@@ -3598,7 +3614,7 @@ export default function App() {
         )}
 
         {/* More about Jupiter Button */}
-        {focusedPlanet === "Jupiter" && (
+        {focusedPlanet === "Jupiter" && !arMode && !vrMode && (
           <button
             onClick={jupiterHandlers.handleMoreAbout}
             style={{
@@ -3637,7 +3653,7 @@ export default function App() {
         )}
 
         {/* More about Saturn Button */}
-        {focusedPlanet === "Saturn" && (
+        {focusedPlanet === "Saturn" && !arMode && !vrMode && (
           <button
             onClick={saturnHandlers.handleMoreAbout}
             style={{
@@ -3676,7 +3692,7 @@ export default function App() {
         )}
 
         {/* More about Uranus Button */}
-        {focusedPlanet === "Uranus" && (
+        {focusedPlanet === "Uranus" && !arMode && !vrMode && (
           <button
             onClick={uranusHandlers.handleMoreAbout}
             style={{
@@ -3715,7 +3731,7 @@ export default function App() {
         )}
 
         {/* More about Neptune Button */}
-        {focusedPlanet === "Neptune" && (
+        {focusedPlanet === "Neptune" && !arMode && !vrMode && (
           <button
             onClick={neptuneHandlers.handleMoreAbout}
             style={{
@@ -3754,7 +3770,7 @@ export default function App() {
         )}
 
         {/* More about Pluto Button */}
-        {focusedPlanet === "Pluto" && (
+        {focusedPlanet === "Pluto" && !arMode && !vrMode && (
           <button
             onClick={plutoHandlers.handleMoreAbout}
             style={{
