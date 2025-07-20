@@ -1,0 +1,359 @@
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* hide scroll bar completely */
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+
+.overlay h1,
+.overlay p {
+  color: white;
+  margin: 10px;
+}
+
+/* Professional Solar System Enhancements */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap");
+
+@keyframes planetRotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes atmosphereGlow {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes planetPulse {
+  0% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6),
+      inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(147, 51, 234, 0.8),
+      inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6),
+      inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes fadeInFromSpace {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-10px) scale(0.95);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes cosmicPulse {
+  0% {
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 20px rgba(16, 185, 129, 0.2);
+  }
+  100% {
+    box-shadow: 0 6px 24px rgba(16, 185, 129, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 40px rgba(16, 185, 129, 0.4);
+  }
+}
+
+/* Professional enhancements for existing elements */
+.professional-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  will-change: transform, box-shadow, filter;
+}
+
+.professional-button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.5);
+  filter: brightness(1.1) saturate(1.1);
+}
+
+.professional-button:active {
+  transform: translateY(-1px) scale(1.01);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.professional-search {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: box-shadow, border-color, background;
+}
+
+.professional-search:focus {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 0 60px rgba(147, 51, 234, 0.2);
+  transform: scale(1.01);
+}
+
+/* Ultra-smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced smooth transitions for all interactive elements */
+button,
+input,
+select,
+textarea {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth cursor transitions */
+body {
+  transition: cursor 0.2s ease;
+  overflow: hidden; /* Prevent scrolling for immersive experience */
+}
+
+/* Professional micro-interactions */
+.micro-interaction {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.micro-interaction:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.micro-interaction:active {
+  transform: translateY(0px);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced glow effects */
+.professional-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.professional-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+/* Cosmic cursor trail effect */
+.cosmic-cursor {
+  pointer-events: none;
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.6), transparent);
+  z-index: 9999;
+  transition: all 0.1s ease;
+}
+
+/* Performance optimizations for smooth animations */
+.smooth-transform {
+  will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Buttery smooth hover effects */
+.smooth-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smooth-hover:hover {
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.1);
+}
+
+/* Earth Layers Animation */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%) translateY(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) translateY(-50%);
+    opacity: 1;
+  }
+}
+
+/* High Contrast Mode */
+.high-contrast {
+  filter: contrast(150%) brightness(120%);
+}
+
+.high-contrast * {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+.high-contrast button {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast input {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* Focus indicators for accessibility */
+*:focus {
+  outline: 2px solid #667eea !important;
+  outline-offset: 2px !important;
+}
+
+/* Skip links */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000000;
+  color: #ffffff;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10001;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .solar-system-container {
+    padding: 10px;
+  }
+
+  /* Make control panels more mobile-friendly */
+  .control-panel {
+    width: 90vw !important;
+    max-width: 350px !important;
+    font-size: 0.9rem;
+  }
+
+  /* Adjust futuristic overlays for mobile */
+  .quantum-computer,
+  .ai-analytics,
+  .blockchain-ledger {
+    width: 95vw !important;
+    max-width: 400px !important;
+    padding: 15px !important;
+    font-size: 0.8rem;
+  }
+
+  /* Make AR/VR buttons more touch-friendly */
+  .ar-close-button,
+  .vr-close-button {
+    width: 70px !important;
+    height: 70px !important;
+    font-size: 1.8rem !important;
+  }
+}
+
+/* Smooth scrolling and better performance */
+* {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced button animations */
+.professional-button {
+  transform-origin: center;
+  will-change: transform, box-shadow;
+}
+
+.professional-button:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.professional-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+input,
+select,
+textarea {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Better focus indicators */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+}
+
+/* Loading animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Pulse animation for important elements */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}

@@ -1,0 +1,1388 @@
+/* Epic 3D Sun Approach Animation Styles */
+.sun-approach-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1500;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 140, 0, 0.1) 0%,
+    rgba(255, 69, 0, 0.05) 30%,
+    rgba(0, 0, 0, 0.8) 70%,
+    #000000 100%
+  );
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 2000px; /* 3D perspective */
+  transform-style: preserve-3d;
+}
+
+/* Heat Distortion Effect */
+.heat-distortion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 30% 40%,
+      rgba(255, 140, 0, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(255, 69, 0, 0.1) 0%,
+      transparent 50%
+    );
+  animation: heatWave 3s ease-in-out infinite alternate;
+  filter: blur(2px);
+}
+
+/* 3D Approaching Phase */
+.approaching-phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1500px;
+}
+
+.sun-core {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin-bottom: 3rem;
+}
+
+.sun-surface {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ffff00 0%,
+    #ffa500 30%,
+    #ff4500 60%,
+    #ff6347 100%
+  );
+  animation: sunRotate 8s linear infinite,
+    sunPulse 2s ease-in-out infinite alternate;
+  box-shadow: 0 0 50px rgba(255, 140, 0, 0.8), 0 0 100px rgba(255, 69, 0, 0.6),
+    inset 0 0 50px rgba(255, 255, 0, 0.3);
+}
+
+.sun-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 0, 0.3) 0%,
+    rgba(255, 140, 0, 0.2) 30%,
+    rgba(255, 69, 0, 0.1) 60%,
+    transparent 100%
+  );
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+.approach-text {
+  text-align: center;
+  color: white;
+}
+
+.approach-text h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.approach-text p {
+  font-size: 1.2rem;
+  margin: 0;
+  opacity: 0.9;
+  font-family: "Space Mono", monospace;
+  letter-spacing: 0.1em;
+}
+
+/* Particle Stream */
+.particle-stream {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+}
+
+.particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #ffff00, #ffa500);
+  border-radius: 50%;
+  transform-origin: 0 0;
+  transform: rotate(var(--angle)) translateX(150px);
+  animation: particleFloat 3s ease-in-out infinite;
+  animation-delay: var(--delay);
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+}
+
+/* 3D Explosion Phase */
+.explosion-3d-phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+}
+
+.exploding-sun {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-bottom: 2rem;
+}
+
+.exploding-sun .sun-surface.exploding {
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ffffff 0%,
+    #ffff00 15%,
+    #ff8800 30%,
+    #ff4400 50%,
+    #ff0000 70%,
+    #cc0000 100%
+  );
+  animation: explosionPulse 0.8s ease-in-out infinite,
+    sunRotate 2s linear infinite;
+  box-shadow: 0 0 150px rgba(255, 255, 255, 1), 0 0 300px rgba(255, 136, 0, 0.9),
+    0 0 450px rgba(255, 68, 0, 0.7);
+}
+
+.exploding-sun .sun-glow.explosive {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 0, 0.4) 20%,
+    rgba(255, 136, 0, 0.3) 40%,
+    rgba(255, 68, 0, 0.2) 70%,
+    transparent 100%
+  );
+  animation: explosiveGlow 0.6s ease-in-out infinite alternate;
+}
+
+.explosion-rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.explosion-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--ring-size);
+  height: var(--ring-size);
+  border: 4px solid rgba(255, 255, 0, 0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: explosionRingExpand 2.5s ease-out infinite;
+  animation-delay: var(--ring-delay);
+}
+
+.explosion-text {
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+.explosion-text h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 1);
+  animation: explosionTextBounce 0.8s ease-in-out infinite alternate;
+  color: #ffffff;
+}
+
+.explosion-text p {
+  font-size: 1.4rem;
+  margin: 0;
+  opacity: 0.9;
+  font-family: "Space Mono", monospace;
+  letter-spacing: 0.1em;
+  animation: explosionTextGlow 1s ease-in-out infinite alternate;
+}
+
+/* 3D Explosion Text Styles */
+.explosion-text-3d {
+  text-align: center;
+  color: white;
+  z-index: 10;
+  transform-style: preserve-3d;
+}
+
+.explosion-text-3d h2 {
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 1), 0 0 80px rgba(255, 136, 0, 0.8),
+    10px 10px 20px rgba(0, 0, 0, 0.5);
+  animation: explosion3DTextBounce 1s ease-in-out infinite alternate;
+  color: #ffffff;
+  transform: translateZ(100px);
+}
+
+.explosion-text-3d p {
+  font-size: 1.5rem;
+  margin: 0;
+  opacity: 0.9;
+  font-family: "Space Mono", monospace;
+  letter-spacing: 0.1em;
+  animation: explosion3DTextGlow 1.2s ease-in-out infinite alternate;
+  transform: translateZ(50px);
+}
+
+.bouncing-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bouncing-particle {
+  position: absolute;
+  left: var(--bounce-x);
+  top: var(--bounce-y);
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffff00, #ff8800);
+  border-radius: 50%;
+  animation: bounceParticle 1.5s ease-in-out infinite;
+  animation-delay: var(--bounce-delay);
+  box-shadow: 0 0 15px rgba(255, 136, 0, 0.8);
+}
+
+/* 3D Flare Storm Phase */
+.flare-storm-3d-phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 2500px;
+}
+
+.massive-sun {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin-bottom: 2rem;
+}
+
+.massive-sun .sun-surface.flaring {
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ffffff 0%,
+    #ffff00 20%,
+    #ffa500 40%,
+    #ff4500 70%,
+    #ff0000 100%
+  );
+  animation: solarFlare 2.5s ease-in-out infinite, sunRotate 6s linear infinite;
+  box-shadow: 0 0 100px rgba(255, 255, 255, 0.9),
+    0 0 200px rgba(255, 140, 0, 0.8), 0 0 300px rgba(255, 69, 0, 0.6);
+}
+
+.massive-sun .sun-glow.intense {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 0, 0.3) 20%,
+    rgba(255, 140, 0, 0.2) 40%,
+    rgba(255, 69, 0, 0.1) 70%,
+    transparent 100%
+  );
+  animation: intenseGlow 1s ease-in-out infinite alternate;
+}
+
+.solar-flares {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+}
+
+.solar-flare {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 200px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 0, 0.7) 30%,
+    rgba(255, 140, 0, 0.5) 70%,
+    transparent 100%
+  );
+  transform-origin: bottom center;
+  transform: rotate(var(--flare-angle)) translateY(-250px);
+  animation: flareEruption 2.5s ease-out infinite;
+  animation-delay: var(--flare-delay);
+  filter: blur(1px);
+}
+
+.flare-text {
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+.flare-text h2 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
+  animation: flareTextPulse 0.5s ease-in-out infinite alternate;
+  color: #ffffff;
+}
+
+.flare-text p {
+  font-size: 1.3rem;
+  margin: 0;
+  opacity: 0.9;
+  font-family: "Space Mono", monospace;
+  letter-spacing: 0.1em;
+}
+
+/* 3D Flare Storm Text Styles */
+.flare-storm-text-3d {
+  text-align: center;
+  color: white;
+  z-index: 10;
+  transform-style: preserve-3d;
+}
+
+.flare-storm-text-3d h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(45deg, #ffffff, #ffff00, #ff8800, #8800ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 60px rgba(136, 0, 255, 1), 0 0 120px rgba(255, 136, 0, 0.8),
+    15px 15px 30px rgba(0, 0, 0, 0.7);
+  animation: flareStorm3DTextBounce 1.2s ease-in-out infinite alternate;
+  transform: translateZ(200px) rotateY(5deg);
+}
+
+.flare-storm-text-3d p {
+  font-size: 1.8rem;
+  margin: 0;
+  opacity: 0.9;
+  font-family: "Space Mono", monospace;
+  letter-spacing: 0.1em;
+  animation: flareStorm3DTextGlow 1.5s ease-in-out infinite alternate;
+  transform: translateZ(100px) rotateX(5deg);
+  color: #ffffff;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+/* Energy Waves */
+.energy-waves {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.energy-wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border: 3px solid rgba(255, 255, 0, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: energyWaveExpand 3.5s ease-out infinite;
+  animation-delay: var(--wave-delay);
+}
+
+/* Corona Dance Phase */
+.corona-dance-phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.dancing-corona-sun {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  margin-bottom: 3rem;
+}
+
+.dancing-corona-sun .sun-surface.dancing {
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ffff88 0%,
+    #ffaa00 30%,
+    #ff6600 60%,
+    #ff4400 100%
+  );
+  animation: dancingRotate 4s linear infinite,
+    coronaPulse 2s ease-in-out infinite alternate;
+}
+
+.dancing-corona-sun .sun-glow.dancing-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 136, 0.4) 0%,
+    rgba(255, 170, 0, 0.3) 40%,
+    rgba(255, 102, 0, 0.2) 70%,
+    transparent 100%
+  );
+  animation: explosiveGlow 2s ease-in-out infinite alternate;
+}
+
+.dancing-corona-sun .corona-layer.dancing-corona {
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    transparent 60%,
+    rgba(255, 255, 255, 0.2) 70%,
+    rgba(255, 255, 136, 0.3) 80%,
+    rgba(255, 170, 0, 0.2) 90%,
+    transparent 100%
+  );
+  animation: dancingRotate 6s linear infinite reverse;
+}
+
+.spiral-corona-streams {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+}
+
+.spiral-corona-stream {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 180px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 136, 0.9) 0%,
+    rgba(255, 170, 0, 0.7) 50%,
+    transparent 100%
+  );
+  transform-origin: bottom center;
+  transform: rotate(var(--spiral-angle)) translateY(-250px);
+  animation: spiralDance 3s ease-in-out infinite;
+  animation-delay: var(--spiral-delay);
+}
+
+.dance-text {
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+.dance-text h1 {
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(45deg, #ffff88, #ffaa00, #ff6600);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 50px rgba(255, 170, 0, 0.9);
+  animation: explosionTextBounce 1.5s ease-in-out infinite alternate;
+}
+
+.dance-text p {
+  font-size: 1.5rem;
+  margin: 0;
+  opacity: 0.9;
+  font-family: "Space Mono", monospace;
+  letter-spacing: 0.1em;
+  animation: explosionTextGlow 2s ease-in-out infinite alternate;
+}
+
+.dancing-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.dancing-particle {
+  position: absolute;
+  left: var(--dance-x);
+  top: var(--dance-y);
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, #ffff88, #ffaa00);
+  border-radius: 50%;
+  animation: danceParticle 2s ease-in-out infinite;
+  animation-delay: var(--dance-delay);
+  box-shadow: 0 0 12px rgba(255, 170, 0, 0.8);
+}
+
+/* Solar Storm Phase */
+.solar-storm-phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.storm-sun {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin-bottom: 3rem;
+}
+
+.storm-sun .sun-surface.stormy {
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ffffff 0%,
+    #ffff00 10%,
+    #ff8800 25%,
+    #ff4400 45%,
+    #ff0000 65%,
+    #8800ff 85%,
+    #4400ff 100%
+  );
+  animation: stormyRotate 3s linear infinite,
+    explosionPulse 1.5s ease-in-out infinite;
+}
+
+.storm-sun .sun-glow.storm-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 0, 0.5) 20%,
+    rgba(255, 136, 0, 0.4) 40%,
+    rgba(255, 68, 0, 0.3) 60%,
+    rgba(136, 0, 255, 0.2) 80%,
+    transparent 100%
+  );
+  animation: explosiveGlow 1s ease-in-out infinite alternate;
+}
+
+.storm-sun .storm-layer {
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    transparent 50%,
+    rgba(136, 0, 255, 0.3) 60%,
+    rgba(68, 0, 255, 0.2) 80%,
+    transparent 100%
+  );
+  animation: stormyRotate 8s linear infinite;
+}
+
+.lightning-bolts {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+}
+
+.lightning-bolt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 250px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(136, 0, 255, 0.9) 30%,
+    rgba(68, 0, 255, 0.7) 70%,
+    transparent 100%
+  );
+  transform-origin: bottom center;
+  transform: rotate(var(--bolt-angle)) translateY(-300px);
+  animation: lightningStrike 2s ease-out infinite;
+  animation-delay: var(--bolt-delay);
+  filter: blur(1px);
+  box-shadow: 0 0 20px rgba(136, 0, 255, 0.8);
+}
+
+.finale-text {
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+.finale-text h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(45deg, #ffffff, #ffff00, #ff8800, #8800ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 60px rgba(136, 0, 255, 1);
+  animation: explosionTextBounce 1s ease-in-out infinite alternate;
+}
+
+.finale-text p {
+  font-size: 1.6rem;
+  margin: 0;
+  opacity: 0.9;
+  font-family: "Space Mono", monospace;
+  letter-spacing: 0.1em;
+  animation: explosionTextGlow 1.5s ease-in-out infinite alternate;
+}
+
+.storm-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.storm-particle {
+  position: absolute;
+  left: var(--storm-x);
+  top: var(--storm-y);
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #8800ff, #4400ff);
+  border-radius: 50%;
+  animation: stormParticle 2.5s ease-in-out infinite;
+  animation-delay: var(--storm-delay);
+  box-shadow: 0 0 15px rgba(136, 0, 255, 0.9);
+}
+
+/* Original Corona Phase (keeping for reference) */
+.corona-phase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.corona-sun {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-bottom: 3rem;
+}
+
+.corona-sun .sun-surface.corona-active {
+  background: radial-gradient(
+    circle at 30% 30%,
+    #ffff88 0%,
+    #ffaa00 30%,
+    #ff6600 60%,
+    #ff4400 100%
+  );
+  animation: coronaRotate 10s linear infinite,
+    coronaPulse 3s ease-in-out infinite alternate;
+}
+
+.corona-sun .sun-glow.corona-glow {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 136, 0.3) 0%,
+    rgba(255, 170, 0, 0.2) 40%,
+    rgba(255, 102, 0, 0.1) 70%,
+    transparent 100%
+  );
+  animation: coronaGlowPulse 4s ease-in-out infinite alternate;
+}
+
+.corona-layer {
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    transparent 60%,
+    rgba(255, 255, 255, 0.1) 70%,
+    rgba(255, 255, 136, 0.2) 80%,
+    rgba(255, 170, 0, 0.1) 90%,
+    transparent 100%
+  );
+  animation: coronaLayerRotate 15s linear infinite reverse;
+}
+
+.corona-streams {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+}
+
+.corona-stream {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 150px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 136, 0.8) 0%,
+    rgba(255, 170, 0, 0.6) 50%,
+    transparent 100%
+  );
+  transform-origin: bottom center;
+  transform: rotate(var(--stream-angle)) translateY(-200px);
+  animation: coronaStreamFlow 4.5s ease-in-out infinite;
+  animation-delay: var(--stream-delay);
+}
+
+.welcome-text {
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+.welcome-text h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 0 0 1rem 0;
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(45deg, #ffff88, #ffaa00, #ff6600);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(255, 170, 0, 0.8);
+  animation: welcomeTextGlow 3s ease-in-out infinite alternate;
+}
+
+.welcome-text p {
+  font-size: 1.4rem;
+  margin: 0 0 2rem 0;
+  opacity: 0.9;
+  font-family: "Space Mono", monospace;
+  letter-spacing: 0.1em;
+}
+
+.sun-stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 170, 0, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 170, 0, 0.3);
+  backdrop-filter: blur(10px);
+  min-width: 120px;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffaa00;
+  font-family: "Orbitron", sans-serif;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.5rem;
+  text-align: center;
+  font-family: "Space Mono", monospace;
+}
+
+/* Floating Particles */
+.floating-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.floating-particle {
+  position: absolute;
+  left: var(--particle-x);
+  top: var(--particle-y);
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, #ffff88, #ffaa00);
+  border-radius: 50%;
+  animation: floatParticle 4s ease-in-out infinite;
+  animation-delay: var(--particle-delay);
+  box-shadow: 0 0 8px rgba(255, 170, 0, 0.6);
+}
+
+/* Screen Flash */
+.screen-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 0, 0.4) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Audio Visualization */
+.audio-bars {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+}
+
+.audio-bar {
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(to top, #ffaa00, #ffff88);
+  border-radius: 2px;
+  animation: audioVisualize 0.8s ease-in-out infinite alternate;
+  animation-delay: var(--bar-delay);
+}
+
+/* Animations */
+@keyframes heatWave {
+  0% {
+    transform: translateX(-2px) translateY(-1px);
+  }
+  50% {
+    transform: translateX(2px) translateY(1px);
+  }
+  100% {
+    transform: translateX(-1px) translateY(-2px);
+  }
+}
+
+@keyframes sunRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sunPulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 40px rgba(255, 140, 0, 1);
+  }
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: rotate(var(--angle)) translateX(150px) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(var(--angle)) translateX(180px) scale(1.2);
+  }
+}
+
+@keyframes solarFlare {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: brightness(1.5);
+  }
+}
+
+@keyframes intenseGlow {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes flareEruption {
+  0% {
+    transform: rotate(var(--flare-angle)) translateY(-250px) scaleY(0);
+    opacity: 0;
+  }
+  30% {
+    transform: rotate(var(--flare-angle)) translateY(-250px) scaleY(1);
+    opacity: 1;
+  }
+  70% {
+    transform: rotate(var(--flare-angle)) translateY(-250px) scaleY(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(var(--flare-angle)) translateY(-250px) scaleY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes flareTextPulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes energyWaveExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(8);
+    opacity: 0;
+  }
+}
+
+@keyframes coronaRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes coronaPulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes coronaGlowPulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes coronaLayerRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes coronaStreamFlow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: rotate(var(--stream-angle)) translateY(-200px) scaleY(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: rotate(var(--stream-angle)) translateY(-200px) scaleY(1.3);
+  }
+}
+
+@keyframes welcomeTextGlow {
+  0% {
+    text-shadow: 0 0 40px rgba(255, 170, 0, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 60px rgba(255, 170, 0, 1);
+  }
+}
+
+@keyframes floatParticle {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes audioVisualize {
+  0% {
+    height: 20px;
+  }
+  100% {
+    height: 60px;
+  }
+}
+
+/* New Fun Animation Keyframes */
+@keyframes explosionPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1.5);
+  }
+  50% {
+    transform: scale(1.15);
+    filter: brightness(2);
+  }
+}
+
+@keyframes explosiveGlow {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes explosionRingExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes explosionTextBounce {
+  0% {
+    transform: scale(1) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(2deg);
+  }
+}
+
+@keyframes explosionTextGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(255, 136, 0, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 40px rgba(255, 136, 0, 1);
+  }
+}
+
+@keyframes bounceParticle {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-30px) scale(1.3) rotate(90deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-15px) scale(1.1) rotate(180deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(-25px) scale(1.2) rotate(270deg);
+    opacity: 1;
+  }
+}
+
+@keyframes dancingRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes spiralDance {
+  0% {
+    transform: rotate(var(--spiral-angle)) translateY(-250px) scaleY(1)
+      rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: rotate(var(--spiral-angle)) translateY(-250px) scaleY(1.5)
+      rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(var(--spiral-angle)) translateY(-250px) scaleY(1)
+      rotate(360deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes danceParticle {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  33% {
+    transform: translateY(-25px) scale(1.4) rotate(120deg);
+    opacity: 1;
+  }
+  66% {
+    transform: translateY(15px) scale(0.8) rotate(240deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes lightningStrike {
+  0% {
+    transform: rotate(var(--bolt-angle)) translateY(-300px) scaleY(0);
+    opacity: 0;
+  }
+  10% {
+    transform: rotate(var(--bolt-angle)) translateY(-300px) scaleY(1.5);
+    opacity: 1;
+  }
+  20% {
+    transform: rotate(var(--bolt-angle)) translateY(-300px) scaleY(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(var(--bolt-angle)) translateY(-300px) scaleY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes stormyRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.03);
+    filter: brightness(1.3);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.06);
+    filter: brightness(1.6);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.03);
+    filter: brightness(1.3);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes stormParticle {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  20% {
+    transform: translateY(-40px) scale(1.6) rotate(72deg);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(20px) scale(0.6) rotate(144deg);
+    opacity: 0.8;
+  }
+  60% {
+    transform: translateY(-30px) scale(1.3) rotate(216deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(10px) scale(0.9) rotate(288deg);
+    opacity: 0.7;
+  }
+}
+
+/* New 3D Animation Keyframes */
+@keyframes explosion3DTextBounce {
+  0% {
+    transform: translateZ(100px) scale(1) rotateY(0deg) rotateX(0deg);
+    filter: brightness(1);
+  }
+  100% {
+    transform: translateZ(150px) scale(1.1) rotateY(5deg) rotateX(2deg);
+    filter: brightness(1.3);
+  }
+}
+
+@keyframes explosion3DTextGlow {
+  0% {
+    text-shadow: 0 0 20px rgba(255, 136, 0, 0.8);
+    transform: translateZ(50px) rotateX(0deg);
+  }
+  100% {
+    text-shadow: 0 0 40px rgba(255, 136, 0, 1),
+      0 0 80px rgba(255, 255, 255, 0.5);
+    transform: translateZ(80px) rotateX(3deg);
+  }
+}
+
+@keyframes flareStorm3DTextBounce {
+  0% {
+    transform: translateZ(200px) rotateY(5deg) rotateX(0deg) scale(1);
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  100% {
+    transform: translateZ(250px) rotateY(-5deg) rotateX(5deg) scale(1.05);
+    filter: brightness(1.4) hue-rotate(30deg);
+  }
+}
+
+@keyframes flareStorm3DTextGlow {
+  0% {
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    transform: translateZ(100px) rotateX(5deg) rotateZ(0deg);
+  }
+  100% {
+    text-shadow: 0 0 60px rgba(255, 255, 255, 1),
+      0 0 120px rgba(136, 0, 255, 0.8);
+    transform: translateZ(130px) rotateX(-5deg) rotateZ(2deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sun-core,
+  .massive-sun,
+  .corona-sun {
+    width: 250px;
+    height: 250px;
+  }
+
+  .approach-text h2,
+  .flare-text h2 {
+    font-size: 2rem;
+  }
+
+  .welcome-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .sun-stats {
+    gap: 1rem;
+  }
+
+  .stat {
+    min-width: 100px;
+    padding: 0.75rem;
+  }
+}
